@@ -1,0 +1,21 @@
+nav {
+	display: flex;
+	gap: 45px;
+	align-items: center;
+	justify-content: center;
+	height: 50px;
+	background-color: #cb8c54;
+}
+
+nav a {
+	color: white;
+	text-decoration: none;
+}
+
+nav a:hover {
+	color: cadetblue;
+}
+
+nav a svg {
+	margin-right: 5px;
+}
