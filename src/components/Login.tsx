@@ -11,12 +11,13 @@ export const Login: FC<Props> = ({ setIsAuth }) => {
 	const navigate = useNavigate();
 	const loginInWithGoogle = () => {
 		// Googleでログイン
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-		void signInWithPopup(auth, provider).then((result) => {
-			localStorage.setItem("isAuth", "true");
-			setIsAuth(true);
-			navigate("/");
-		});
+		void signInWithPopup(auth , provider ).then(
+			(result) => {
+				localStorage.setItem("isAuth", "true");
+				setIsAuth(true);
+				navigate("/");
+			}
+		);
 	};
 
 	return (
