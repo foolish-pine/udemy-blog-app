@@ -9,7 +9,9 @@ import { Navbar } from "components/Navbar";
 import "App.css";
 
 export const App: FC = () => {
-	const [isAuth, setIsAuth] = useState(false);
+	const [isAuth, setIsAuth] = useState(
+		localStorage.getItem("isAuth") === "true"
+	);
 
 	return (
 		<Router>

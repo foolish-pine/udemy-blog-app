@@ -1,10 +1,10 @@
 import { FC, useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 
 import "components/Home.css";
-import { db } from "firestore";
+import { auth, db } from "firestore";
 
-type PostList = {
+type Post = {
 	id: string;
 	author: { id: string; username: string };
 	title: string;
@@ -12,17 +12,23 @@ type PostList = {
 };
 
 export const Home: FC = () => {
-	const [postList, setPostList] = useState<PostList[] | []>([]);
+	const [postList, setPostList] = useState<Post[] | []>([]);
+
+	const getPosts = async () => {
+		const data = await getDocs(collection(db, "posts"));
+		setPostList(
+			data.docs.map((doc) => ({ ...doc.data(), id: doc.id })) as Post[]
+		);
+	};
 
 	useEffect(() => {
-		const getPosts = async () => {
-			const data = await getDocs(collection(db, "posts"));
-			setPostList(
-				data.docs.map((doc) => ({ ...doc.data(), id: doc.id })) as PostList[]
-			);
-		};
 		void getPosts();
 	}, []);
+
+	const handleDelete = async (id: string) => {
+		await deleteDoc(doc(db, "posts", id));
+		void getPosts();
+	};
 
 	return (
 		<div className="homePage">
@@ -35,7 +41,12 @@ export const Home: FC = () => {
 						<div className="postTextContainer">{post.postText}</div>
 						<div className="nameAndDeleteButton">
 							<h3>@{post.author.username}</h3>
-							<button>削除</button>
+							{auth.currentUser !== null &&
+								post.author.id === auth.currentUser.uid && (
+									<button onClick={async () => await handleDelete(post.id)}>
+										削除
+									</button>
+								)}
 						</div>
 					</div>
 				);
