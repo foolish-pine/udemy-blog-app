@@ -1,0 +1,44 @@
+.createPostPage {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 90vh;
+}
+
+.postContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 500px;
+	height: 400px;
+	padding: 0 40px;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 5px 9px 15px -5px #777;
+}
+
+.postContainer h1 {
+	margin: 0;
+}
+
+.postContainer input {
+	width: 100%;
+	height: 30px;
+	padding: 0 4px;
+}
+
+.postContainer textarea {
+	width: 100%;
+	height: 120px;
+	padding: 7px;
+}
+
+.postButton {
+	padding: 10px 0;
+	color: white;
+	cursor: pointer;
+	background-color: #3277a5;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 5px 9px 15px -5px #777;
+}

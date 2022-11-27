@@ -11,13 +11,11 @@ export const Login: FC<Props> = ({ setIsAuth }) => {
 	const navigate = useNavigate();
 	const loginInWithGoogle = () => {
 		// Googleでログイン
-		void signInWithPopup(auth , provider ).then(
-			(result) => {
-				localStorage.setItem("isAuth", "true");
-				setIsAuth(true);
-				navigate("/");
-			}
-		);
+		void signInWithPopup(auth, provider).then((result) => {
+			localStorage.setItem("isAuth", "true");
+			setIsAuth(true);
+			navigate("/");
+		});
 	};
 
 	return (
